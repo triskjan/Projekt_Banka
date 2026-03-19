@@ -58,6 +58,7 @@
     <Compile Include="Form_klient.Designer.cs">
       <DependentUpon>Form_klient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Klient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
