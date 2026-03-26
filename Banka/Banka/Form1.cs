@@ -20,7 +20,14 @@ namespace Banka
         private void button1_Click(object sender, EventArgs e)
         {
             Form_klient form_Klient = new Form_klient();
-            form_Klient.ShowDialog();
+            if(form_Klient.ShowDialog() == DialogResult.OK)
+            {
+                if (form_Klient.klient != null)
+                {
+                    listBox1.Items.Add(form_Klient.klient);
+                    MessageBox.Show($"Přidán klient: {form_Klient.klient.ToString()}");
+                }
+            }
         }
     }
 }

@@ -8,6 +8,13 @@ namespace Banka
 {
     public class Klient
     {
+        /*
+    *            * a.	Vlastnosti
+    *             i.	Jmeno
+*                 ii.	Prijmeni
+*                 iii.	UzivatelskeJmeno
+*                  iv.	Heslo
+*                                                                                   */
         public string Jmeno { get; set; }
         public string Prijmeni { get; set; }
         public string UzivatelskeJmeno { get; set; }
