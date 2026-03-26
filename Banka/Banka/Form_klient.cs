@@ -12,6 +12,7 @@ namespace Banka
 {
     public partial class Form_klient : Form
     {
+        
         public Form_klient()
         {
             InitializeComponent();

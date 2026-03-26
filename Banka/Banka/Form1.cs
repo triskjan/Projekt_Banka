@@ -16,7 +16,7 @@ namespace Banka
         {
             InitializeComponent();
         }
-
+        bool JeVybranKlient { get { return listBox1.SelectedIndex != -1; } }
         private void bPridejKlienta_Click(object sender, EventArgs e)
         {
             Form_klient form_Klient = new Form_klient();
@@ -32,7 +32,7 @@ namespace Banka
 
         private void bOdstranKlienta_Click(object sender, EventArgs e)
         {
-            if(listBox1.SelectedIndex !=-1)
+            if(JeVybranKlient)
             {
                     listBox1.Items.RemoveAt(listBox1.SelectedIndex);
             }
@@ -44,7 +44,7 @@ namespace Banka
 
         private void bUpravKlienta_Click(object sender, EventArgs e)
         {
-            if(listBox1.SelectedIndex !=-1)
+            if(JeVybranKlient)
             {
                 Form_klient form_Klient = new Form_klient((Klient)listBox1.SelectedItem);
                 if (form_Klient.ShowDialog() == DialogResult.OK)
