@@ -41,5 +41,21 @@ namespace Banka
                 MessageBox.Show("Vyberte klienta k odstranění.");
             }
         }
+
+        private void bUpravKlienta_Click(object sender, EventArgs e)
+        {
+            if(listBox1.SelectedIndex !=-1)
+            {
+                Form_klient form_Klient = new Form_klient((Klient)listBox1.SelectedItem);
+                if (form_Klient.ShowDialog() == DialogResult.OK)
+                {
+                    if (form_Klient.klient != null)
+                    {
+                        listBox1.Items[listBox1.SelectedIndex] = form_Klient.klient;
+                        MessageBox.Show($"Upraven klient: {form_Klient.klient.ToString()}");
+                    }
+                }
+            }
+        }
     }
 }

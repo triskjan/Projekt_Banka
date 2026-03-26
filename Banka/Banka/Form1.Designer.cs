@@ -57,6 +57,7 @@
             this.bUpravKlienta.TabIndex = 1;
             this.bUpravKlienta.Text = "&Upravit klienta";
             this.bUpravKlienta.UseVisualStyleBackColor = true;
+            this.bUpravKlienta.Click += new System.EventHandler(this.bUpravKlienta_Click);
             // 
             // bOdstranKlienta
             // 
