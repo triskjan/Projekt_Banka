@@ -17,7 +17,7 @@ namespace Banka
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void bPridejKlienta_Click(object sender, EventArgs e)
         {
             Form_klient form_Klient = new Form_klient();
             if(form_Klient.ShowDialog() == DialogResult.OK)
@@ -27,6 +27,18 @@ namespace Banka
                     listBox1.Items.Add(form_Klient.klient);
                     MessageBox.Show($"Přidán klient: {form_Klient.klient.ToString()}");
                 }
+            }
+        }
+
+        private void bOdstranKlienta_Click(object sender, EventArgs e)
+        {
+            if(listBox1.SelectedIndex !=-1)
+            {
+                    listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+            }
+            else
+            {
+                MessageBox.Show("Vyberte klienta k odstranění.");
             }
         }
     }
