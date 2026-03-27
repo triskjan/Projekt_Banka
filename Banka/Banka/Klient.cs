@@ -8,6 +8,7 @@ namespace Banka
 {
     public class Klient
     {
+        public static string CSVzahlavi = "Jmeno;Prijmeni;UzivatelskeJmeno;Heslo";
         /*
     *            * a.	Vlastnosti
     *             i.	Jmeno
@@ -26,6 +27,10 @@ namespace Banka
             Prijmeni = prijmeni;
             UzivatelskeJmeno = uzivatelskeJmeno;
             Heslo = heslo;
+        }
+        public string ToCSV()
+        {
+            return $"{Jmeno};{Prijmeni};{UzivatelskeJmeno};{Heslo}";
         }
         public override string ToString()
         {
