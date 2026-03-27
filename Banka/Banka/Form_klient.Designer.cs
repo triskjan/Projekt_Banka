@@ -66,6 +66,7 @@
             this.tbJmeno.Name = "tbJmeno";
             this.tbJmeno.Size = new System.Drawing.Size(100, 20);
             this.tbJmeno.TabIndex = 1;
+            this.tbJmeno.Text = "Jan";
             // 
             // label2
             // 
@@ -82,6 +83,7 @@
             this.tbPrijmeni.Name = "tbPrijmeni";
             this.tbPrijmeni.Size = new System.Drawing.Size(100, 20);
             this.tbPrijmeni.TabIndex = 1;
+            this.tbPrijmeni.Text = "Tříska";
             // 
             // label3
             // 
@@ -98,6 +100,7 @@
             this.tbUzivatelskeJmeno.Name = "tbUzivatelskeJmeno";
             this.tbUzivatelskeJmeno.Size = new System.Drawing.Size(100, 20);
             this.tbUzivatelskeJmeno.TabIndex = 1;
+            this.tbUzivatelskeJmeno.Text = "triska";
             // 
             // label4
             // 

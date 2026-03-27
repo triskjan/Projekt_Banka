@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,18 @@ namespace Banka
                         listBox1.Items[listBox1.SelectedIndex] = form_Klient.klient;
                         MessageBox.Show($"Upraven klient: {form_Klient.klient.ToString()}");
                     }
+                }
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            using (StreamWriter sw = new StreamWriter("klienti.csv", false, Encoding.UTF8))
+            {
+                sw.WriteLine(Klient.CSVzahlavi);
+                foreach (Klient klient in listBox1.Items)
+                {
+                    sw.WriteLine(klient.ToCSV());
                 }
             }
         }
