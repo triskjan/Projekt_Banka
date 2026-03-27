@@ -9,6 +9,7 @@ namespace Banka
     public class Klient
     {
         public static string CSVzahlavi = "Jmeno;Prijmeni;UzivatelskeJmeno;Heslo";
+        public static string jmenoSouboru = "klienti.csv";
         /*
     *            * a.	Vlastnosti
     *             i.	Jmeno
@@ -27,6 +28,14 @@ namespace Banka
             Prijmeni = prijmeni;
             UzivatelskeJmeno = uzivatelskeJmeno;
             Heslo = heslo;
+        }
+        public Klient(string csvData)
+        {
+            string[] data = csvData.Split(';');
+            this.Jmeno = data[0];
+            this.Prijmeni = data[1];
+            this.UzivatelskeJmeno = data[2];
+            this.Heslo = data[3];
         }
         public string ToCSV()
         {

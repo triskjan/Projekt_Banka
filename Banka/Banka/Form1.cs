@@ -61,7 +61,7 @@ namespace Banka
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            using (StreamWriter sw = new StreamWriter("klienti.csv", false, Encoding.UTF8))
+            using (StreamWriter sw = new StreamWriter(Klient.jmenoSouboru, false, Encoding.UTF8))
             {
                 sw.WriteLine(Klient.CSVzahlavi);
                 foreach (Klient klient in listBox1.Items)
@@ -69,6 +69,21 @@ namespace Banka
                     sw.WriteLine(klient.ToCSV());
                 }
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if(File.Exists(Klient.jmenoSouboru))
+                using (StreamReader sr = new StreamReader("klienti.csv", Encoding.UTF8))
+                {
+                    string csvData = null;
+                    sr.ReadLine();
+                    while (!sr.EndOfStream)
+                    {
+                        csvData = sr.ReadLine();
+                        listBox1.Items.Add(new Klient(csvData));
+                    }
+                }
         }
     }
 }
