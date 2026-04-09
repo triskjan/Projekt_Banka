@@ -31,12 +31,23 @@ namespace Banka
 
         public void VlozPenize(decimal castka)
         {
-
+            if (castka > 0) //ochrana proti vkladu záporné částky
+            {
+                this.Zustatek += castka;
+            }
         }
 
-        public void VyberPenize(decimal castka)
-        {
-
+        public bool VyberPenize(decimal castka)
+        {//ochrana proti výběru záporné částky a proti výběru větší částky než je zůstatek na účtu
+            if (castka <= this.Zustatek)
+            {
+                this.Zustatek -= castka;
+                return true;
+            }
+            else
+            {
+                throw new InvalidOperationException("Nedostatečný zůstatek na účtu.");
+            }
         }
     }
 }
