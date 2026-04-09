@@ -52,7 +52,7 @@ namespace Banka
                 {
                     if (form_Klient.klient != null)
                     {
-                        listBox1.Items[listBox1.SelectedIndex] = form_Klient.klient;
+                        listBox1.Items[listBox1.SelectedIndex] = form_Klient.klient; //vizualni aktualizace udaju v listboxu
                         MessageBox.Show($"Upraven klient: {form_Klient.klient.ToString()}");
                     }
                 }
