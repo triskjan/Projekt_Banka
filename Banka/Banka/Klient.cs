@@ -21,6 +21,7 @@ namespace Banka
         public string Prijmeni { get; set; }
         public string UzivatelskeJmeno { get; set; }
         public string Heslo { get; set; }
+        public List<Ucet> Ucty { get; set; } = new List<Ucet>();
         
         public Klient(string jmeno, string prijmeni, string uzivatelskeJmeno, string heslo)
         {

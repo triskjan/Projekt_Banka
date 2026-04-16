@@ -16,17 +16,25 @@ namespace Banka
             i.	VlozPenize()
             ii.	VyberPenize()
         */
-        public string CisloUctu { get; set; }
+        public static string JmenoSouboru = "ucty.csv";
+        public static string CSVzahlavi = "klient;CisloUctu;Zustatek";
+        public static List<int> SeznamUctu = new List<int>(); //seznam všech čísel účtů pro kontrolu unikátnosti při vytváření nového účtu
+        public int CisloUctu { get; set; }
         public decimal Zustatek { get; set; }
 
-        public Ucet(string cisloUctu)
+        public Ucet(int cisloUctu)
         {
             CisloUctu = cisloUctu;
         }
 
-        public Ucet(string cisloUctu, decimal zustatek) : this(cisloUctu)
+        public Ucet(int cisloUctu, decimal zustatek) : this(cisloUctu)
         {
             Zustatek = zustatek;
+        }
+
+        public override string ToString()
+        {
+            return CisloUctu.ToString();
         }
 
         public void VlozPenize(decimal castka)

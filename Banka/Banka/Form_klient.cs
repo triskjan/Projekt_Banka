@@ -24,7 +24,6 @@ namespace Banka
         public Form_klient(Klient klient)
         {
             InitializeComponent();
-            MessageBox.Show(FinancniOperace.ToString());
             this.Text = "Upravit klienta";
             bOK.Text = "Upravit";
             bOK.Click += bUpravit_Click;
@@ -43,11 +42,17 @@ public Form_klient(Klient klient, bool financniOperace) : this(klient) //konstru
                 this.Text = "Finanční operace klient";
                 bOK.Text = "Zavřít";
                 groupBox3.Enabled = false; //deaktivace pole pro úpravu údajů klienta při finanční operaci, aby nedošlo k nechtěné změně údajů klienta při vkladu/výběru peněz
-
+                bOK.Click -= bUpravit_Click; //odpojení původní akce pro úpravu klienta
+                bOK.Click += bOK_Click; //připojení nové akce pro zavření formuláře po provedení finanční operace
+                AktualizujUctyKlienta();
             }
         }
 
         public Klient klient;
+        void bOK_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
         void bPridat_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbJmeno.Text) || string.IsNullOrWhiteSpace(tbPrijmeni.Text) ||
@@ -75,6 +80,28 @@ public Form_klient(Klient klient, bool financniOperace) : this(klient) //konstru
             }
             klient = new Klient(tbJmeno.Text, tbPrijmeni.Text, tbUzivatelskeJmeno.Text, tbHeslo.Text);
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void bPridatUcet_Click(object sender, EventArgs e)
+        {
+            int noveCisloUctu = Ucet.SeznamUctu.Max() + 1; //generování nového čísla účtu jako maximum z existujících čísel účtů + 1 pro zajištění unikátnosti
+            klient.Ucty.Add(new Ucet( noveCisloUctu,0)); //přidání nového účtu do seznamu účtů klienta
+            Ucet.SeznamUctu.Add(noveCisloUctu);
+            AktualizujUctyKlienta();
+
+        }
+        private void AktualizujUctyKlienta()
+        {
+            lbUcty.Items.Clear();
+            foreach (Ucet ucet in klient.Ucty)
+            {
+                lbUcty.Items.Add(ucet);
+            }
+        }
+
+        private void lbUcty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

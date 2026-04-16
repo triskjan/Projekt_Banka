@@ -36,7 +36,7 @@
             this.tbUzivatelskeJmeno = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbHeslo = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbUcty = new System.Windows.Forms.ListBox();
             this.bOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bVybrat = new System.Windows.Forms.Button();
@@ -46,8 +46,8 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.bOdstranitUcet = new System.Windows.Forms.Button();
+            this.bPridatUcet = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -125,13 +125,14 @@
             this.tbHeslo.TabIndex = 1;
             this.tbHeslo.Text = "ssdfd";
             // 
-            // listBox1
+            // lbUcty
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 19);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 134);
-            this.listBox1.TabIndex = 2;
+            this.lbUcty.FormattingEnabled = true;
+            this.lbUcty.Location = new System.Drawing.Point(6, 19);
+            this.lbUcty.Name = "lbUcty";
+            this.lbUcty.Size = new System.Drawing.Size(120, 134);
+            this.lbUcty.TabIndex = 2;
+            this.lbUcty.SelectedIndexChanged += new System.EventHandler(this.lbUcty_SelectedIndexChanged);
             // 
             // bOK
             // 
@@ -211,9 +212,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.listBox1);
+            this.groupBox2.Controls.Add(this.bOdstranitUcet);
+            this.groupBox2.Controls.Add(this.bPridatUcet);
+            this.groupBox2.Controls.Add(this.lbUcty);
             this.groupBox2.Location = new System.Drawing.Point(150, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(145, 218);
@@ -221,23 +222,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Účty klienta";
             // 
-            // button1
+            // bOdstranitUcet
             // 
-            this.button1.Location = new System.Drawing.Point(6, 159);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "&Přidat účet";
-            this.button1.UseVisualStyleBackColor = true;
+            this.bOdstranitUcet.Location = new System.Drawing.Point(6, 188);
+            this.bOdstranitUcet.Name = "bOdstranitUcet";
+            this.bOdstranitUcet.Size = new System.Drawing.Size(75, 23);
+            this.bOdstranitUcet.TabIndex = 3;
+            this.bOdstranitUcet.Text = "Odstra&nit účet";
+            this.bOdstranitUcet.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // bPridatUcet
             // 
-            this.button2.Location = new System.Drawing.Point(6, 188);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Odstra&nit účet";
-            this.button2.UseVisualStyleBackColor = true;
+            this.bPridatUcet.Location = new System.Drawing.Point(6, 159);
+            this.bPridatUcet.Name = "bPridatUcet";
+            this.bPridatUcet.Size = new System.Drawing.Size(75, 23);
+            this.bPridatUcet.TabIndex = 3;
+            this.bPridatUcet.Text = "&Přidat účet";
+            this.bPridatUcet.UseVisualStyleBackColor = true;
+            this.bPridatUcet.Click += new System.EventHandler(this.bPridatUcet_Click);
             // 
             // groupBox3
             // 
@@ -289,7 +291,7 @@
         private System.Windows.Forms.TextBox tbUzivatelskeJmeno;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbHeslo;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbUcty;
         private System.Windows.Forms.Button bOK;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button bVybrat;
@@ -299,8 +301,8 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button bOdstranitUcet;
+        private System.Windows.Forms.Button bPridatUcet;
         private System.Windows.Forms.GroupBox groupBox3;
     }
 }
