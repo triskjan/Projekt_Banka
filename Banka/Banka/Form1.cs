@@ -85,5 +85,22 @@ namespace Banka
                     }
                 }
         }
+
+        private void bVkladyVybery_Click(object sender, EventArgs e)
+        {
+            if (JeVybranKlient)
+            {
+                Form_klient form_Klient = new Form_klient((Klient)listBox1.SelectedItem, true);
+                //form_Klient.FinancniOperace = true; //nastavení indikace pro otevření formuláře pro finanční operace (vklad/výběr) místo pro úpravu klienta
+                if (form_Klient.ShowDialog() == DialogResult.OK)
+                {
+                    if (form_Klient.klient != null)
+                    {
+                        listBox1.Items[listBox1.SelectedIndex] = form_Klient.klient; //vizualni aktualizace udaju v listboxu
+                        MessageBox.Show($"Upraven klient: {form_Klient.klient.ToString()}");
+                    }
+                }
+            }
+        }
     }
 }

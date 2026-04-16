@@ -33,11 +33,13 @@
             this.bOdstranKlienta = new System.Windows.Forms.Button();
             this.bPridatKlienta = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.bVkladyVybery = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.bVkladyVybery);
             this.groupBox1.Controls.Add(this.bUpravKlienta);
             this.groupBox1.Controls.Add(this.bOdstranKlienta);
             this.groupBox1.Controls.Add(this.bPridatKlienta);
@@ -87,6 +89,16 @@
             this.listBox1.Size = new System.Drawing.Size(142, 342);
             this.listBox1.TabIndex = 0;
             // 
+            // bVkladyVybery
+            // 
+            this.bVkladyVybery.Location = new System.Drawing.Point(6, 159);
+            this.bVkladyVybery.Name = "bVkladyVybery";
+            this.bVkladyVybery.Size = new System.Drawing.Size(120, 23);
+            this.bVkladyVybery.TabIndex = 2;
+            this.bVkladyVybery.Text = "Vklady/výběry";
+            this.bVkladyVybery.UseVisualStyleBackColor = true;
+            this.bVkladyVybery.Click += new System.EventHandler(this.bVkladyVybery_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -109,6 +121,7 @@
         private System.Windows.Forms.Button bOdstranKlienta;
         private System.Windows.Forms.Button bPridatKlienta;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button bVkladyVybery;
     }
 }
 
