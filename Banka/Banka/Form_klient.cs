@@ -20,6 +20,7 @@ namespace Banka
             this.Text = "Přidat klienta";
             bOK.Text = "Přidat";
             bOK.Click += bPridat_Click;
+            groupBox1.Enabled = groupBox2.Enabled = false; //deaktivace pole pro úpravu údajů klienta při přidávání nového klienta, protože údaje se zadávají do textových polí a neexistuje žádný klient k úpravě
         }
         public Form_klient(Klient klient)
         {
@@ -32,7 +33,8 @@ namespace Banka
             tbUzivatelskeJmeno.Text = klient.UzivatelskeJmeno;
             tbHeslo.Text = klient.Heslo;
             this.klient = klient;
-            
+            groupBox1.Enabled = groupBox2.Enabled = false;
+
 
         }
 public Form_klient(Klient klient, bool financniOperace) : this(klient) //konstruktor pro otevření formuláře pro finanční operace, který využívá konstruktor pro úpravu klienta a navíc nastaví indikátor finanční operace
@@ -44,6 +46,7 @@ public Form_klient(Klient klient, bool financniOperace) : this(klient) //konstru
                 groupBox3.Enabled = false; //deaktivace pole pro úpravu údajů klienta při finanční operaci, aby nedošlo k nechtěné změně údajů klienta při vkladu/výběru peněz
                 bOK.Click -= bUpravit_Click; //odpojení původní akce pro úpravu klienta
                 bOK.Click += bOK_Click; //připojení nové akce pro zavření formuláře po provedení finanční operace
+                groupBox1.Enabled = groupBox2.Enabled = true;
                 AktualizujUctyKlienta();
             }
         }
