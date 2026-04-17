@@ -84,9 +84,8 @@ public Form_klient(Klient klient, bool financniOperace) : this(klient) //konstru
 
         private void bPridatUcet_Click(object sender, EventArgs e)
         {
-            int noveCisloUctu = Ucet.SeznamUctu.Max() + 1; //generování nového čísla účtu jako maximum z existujících čísel účtů + 1 pro zajištění unikátnosti
+            int noveCisloUctu = Ucet.MaxCisloUctu + 1; //generování nového čísla účtu jako maximum z existujících čísel účtů + 1 pro zajištění unikátnosti
             klient.Ucty.Add(new Ucet( noveCisloUctu,0)); //přidání nového účtu do seznamu účtů klienta
-            Ucet.SeznamUctu.Add(noveCisloUctu);
             AktualizujUctyKlienta();
 
         }

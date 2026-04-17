@@ -9,7 +9,7 @@ namespace Banka
     public class Klient
     {
         public static string CSVzahlavi = "Jmeno;Prijmeni;UzivatelskeJmeno;Heslo";
-        public static string jmenoSouboru = "klienti.csv";
+        public static string SouborJmeno = "klienti.csv";
         /*
     *            * a.	Vlastnosti
     *             i.	Jmeno

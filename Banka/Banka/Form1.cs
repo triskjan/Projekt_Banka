@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Banka
@@ -17,7 +13,7 @@ namespace Banka
         {
             InitializeComponent();
         }
-        bool JeVybranKlient { get { return listBox1.SelectedIndex != -1; } }
+        bool JeVybranKlient { get { return lbKlienti.SelectedIndex != -1; } }
         private void bPridejKlienta_Click(object sender, EventArgs e)
         {
             Form_klient form_Klient = new Form_klient();
@@ -25,7 +21,7 @@ namespace Banka
             {
                 if (form_Klient.klient != null)
                 {
-                    listBox1.Items.Add(form_Klient.klient);
+                    lbKlienti.Items.Add(form_Klient.klient);
                     MessageBox.Show($"Přidán klient: {form_Klient.klient.ToString()}");
                 }
             }
@@ -35,7 +31,7 @@ namespace Banka
         {
             if(JeVybranKlient)
             {
-                    listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+                    lbKlienti.Items.RemoveAt(lbKlienti.SelectedIndex);
             }
             else
             {
@@ -47,12 +43,12 @@ namespace Banka
         {
             if(JeVybranKlient)
             {
-                Form_klient form_Klient = new Form_klient((Klient)listBox1.SelectedItem);
+                Form_klient form_Klient = new Form_klient((Klient)lbKlienti.SelectedItem);
                 if (form_Klient.ShowDialog() == DialogResult.OK)
                 {
                     if (form_Klient.klient != null)
                     {
-                        listBox1.Items[listBox1.SelectedIndex] = form_Klient.klient; //vizualni aktualizace udaju v listboxu
+                        lbKlienti.Items[lbKlienti.SelectedIndex] = form_Klient.klient; //vizualni aktualizace udaju v listboxu
                         MessageBox.Show($"Upraven klient: {form_Klient.klient.ToString()}");
                     }
                 }
@@ -61,63 +57,82 @@ namespace Banka
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            using (StreamWriter sw = new StreamWriter(Klient.jmenoSouboru, false, Encoding.UTF8))
+            //uložení dat klientů do souboru při zavírání aplikace, aby nedošlo ke ztrátě dat při ukončení aplikace
+            using (StreamWriter sw = new StreamWriter(Klient.SouborJmeno, false, Encoding.UTF8))
             {
                 sw.WriteLine(Klient.CSVzahlavi);
-                foreach (Klient klient in listBox1.Items)
+                foreach (Klient klient in lbKlienti.Items)
                 {
                     sw.WriteLine(klient.ToCSV());
                 }
             }
-            using (StreamWriter sw2 = new StreamWriter(Ucet.JmenoSouboru, false, Encoding.UTF8))
+            //uložení dat o použitých účtech do souboru při zavírání aplikace, aby nedošlo ke ztrátě dat o účtech při ukončení aplikace
+            using (StreamWriter sw2 = new StreamWriter(Ucet.SouborUcty, false, Encoding.UTF8))
             {
-                sw2.WriteLine("PouziteUcty");
-                foreach (int cisloUctu in Ucet.SeznamUctu)
+                sw2.WriteLine(Ucet.CSVzahlavi);
+                foreach (Klient klient in lbKlienti.Items)
                 {
-                    sw2.WriteLine(cisloUctu.ToString());
+                    foreach (Ucet ucet in klient.Ucty)
+                    {
+                        sw2.WriteLine($"{klient.UzivatelskeJmeno};{ucet.ToCSV()}");
+                    }
                 }
             }
+            //uložení všech účtu klientů do souboru při zavírání aplikace, aby nedošlo ke ztrátě dat o účtech klientů při ukončení aplikace
+            using (StreamWriter sw3 = new StreamWriter(Ucet.SouborSeznamUctu, false, Encoding.UTF8))
+            {
+                sw3.WriteLine(Ucet.CSVzahlavi);
+                foreach ( Klient klient in lbKlienti.Items)
+                {
+                    foreach (Ucet ucet in klient.Ucty)
+                    {
+                        sw3.WriteLine($"{klient.UzivatelskeJmeno};{ucet.ToCSV()}");
+                    }
+                }
+            }
+            //Uložení aktuálního maximálního čísla účtu do souboru při zavírání aplikace, aby bylo možné pokračovat v číslování účtů i po restartu aplikace
+            File.WriteAllText(Ucet.SouborMaxUcet, Ucet.MaxCisloUctu.ToString()); //uložení aktuálního maximálního čísla účtu do souboru při zavírání aplikace, aby bylo možné pokračovat v číslování účtů i po restartu aplikace
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (File.Exists(Klient.jmenoSouboru))
-                using (StreamReader sr = new StreamReader(Klient.jmenoSouboru, Encoding.UTF8))
+            //načtení dat klientů ze souboru při spuštění aplikace, aby bylo možné pokračovat v práci s existujícími klienty i po restartu aplikace
+            if (File.Exists(Klient.SouborJmeno))
+                using (StreamReader sr = new StreamReader(Klient.SouborJmeno, Encoding.UTF8))
                 {
-                    string csvData = null;
-                    sr.ReadLine();
+                    sr.ReadLine(); //přeskočení hlavičky souboru s klienty
                     while (!sr.EndOfStream)
                     {
-                        csvData = sr.ReadLine();
-                        listBox1.Items.Add(new Klient(csvData));
+                        lbKlienti.Items.Add(new Klient(sr.ReadLine()));
                     }
                 }
-            if (File.Exists(Ucet.JmenoSouboru))
+            //načtení dat o použitých účtech ze souboru při spuštění aplikace, aby bylo možné pokračovat v práci s existujícími účty i po restartu aplikace
+            if (File.Exists(Ucet.SouborUcty)) //kontrola existence souboru s účty před načítáním dat, aby nedošlo k chybě při načítání z neexistujícího souboru
             {
-                using (StreamReader sr = new StreamReader(Ucet.JmenoSouboru, Encoding.UTF8))
-                        {
-                    string csvData = null;
+                using (StreamReader sr = new StreamReader(Ucet.SouborUcty, Encoding.UTF8))
+                {
                     sr.ReadLine();//přeskočení hlavičky souboru s účty
                     while (!sr.EndOfStream)
-                    {      
-                        csvData = sr.ReadLine();
-                        string[] data = csvData.Split(';');
+                    {
+                        string[] data = sr.ReadLine().Split(';');
                         string jmenoKlienta = data[0];
-
-                        Klient klient = listBox1.Items.Cast<Klient>().FirstOrDefault(k => k.UzivatelskeJmeno == jmenoKlienta);
+                        //najdi klienta s odpovídajícím jménem a přidej mu účet do seznamu účtů klienta
+                        Klient klient = lbKlienti.Items.Cast<Klient>().FirstOrDefault(k => k.UzivatelskeJmeno == jmenoKlienta);
                         if (klient != null)
                         {
                             klient.Ucty.Add(new Ucet(Convert.ToInt32(data[1]), decimal.Parse(data[2])));
                         }
                     }
                 }
-                using (StreamReader sr2 = new StreamReader(Ucet.JmenoSouboru, Encoding.UTF8))
-                {
-                    sr2.ReadLine(); //přeskočení hlavičky souboru s čísly účtů
-                    while (!sr2.EndOfStream)
-                       Ucet.SeznamUctu.Add(Convert.ToInt32(sr2.ReadLine()));
-                }
             }
+
+            //načtení dat o maximálním čísle účtu ze souboru při spuštění aplikace, aby bylo možné pokračovat v číslování účtů i po restartu aplikace
+            if (File.Exists(Ucet.SouborMaxUcet))
+            {
+                Ucet.MaxCisloUctu = Convert.ToInt32(File.ReadAllText(Ucet.SouborMaxUcet));
+            }
+            else Ucet.MaxCisloUctu = 10000;
+            
 
         }
 
@@ -125,7 +140,7 @@ namespace Banka
         {
             if (JeVybranKlient)
             {
-                Form_klient form_Klient = new Form_klient((Klient)listBox1.SelectedItem, true);
+                Form_klient form_Klient = new Form_klient((Klient)lbKlienti.SelectedItem, true);
                 //form_Klient.FinancniOperace = true; //nastavení indikace pro otevření formuláře pro finanční operace (vklad/výběr) místo pro úpravu klienta
                 if (form_Klient.ShowDialog() == DialogResult.OK)
                 {

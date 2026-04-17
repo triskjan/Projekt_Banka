@@ -32,7 +32,7 @@
             this.bUpravKlienta = new System.Windows.Forms.Button();
             this.bOdstranKlienta = new System.Windows.Forms.Button();
             this.bPridatKlienta = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbKlienti = new System.Windows.Forms.ListBox();
             this.bVkladyVybery = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -43,7 +43,7 @@
             this.groupBox1.Controls.Add(this.bUpravKlienta);
             this.groupBox1.Controls.Add(this.bOdstranKlienta);
             this.groupBox1.Controls.Add(this.bPridatKlienta);
-            this.groupBox1.Controls.Add(this.listBox1);
+            this.groupBox1.Controls.Add(this.lbKlienti);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(280, 370);
@@ -83,11 +83,11 @@
             // 
             // listBox1
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(132, 19);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(142, 342);
-            this.listBox1.TabIndex = 0;
+            this.lbKlienti.FormattingEnabled = true;
+            this.lbKlienti.Location = new System.Drawing.Point(132, 19);
+            this.lbKlienti.Name = "listBox1";
+            this.lbKlienti.Size = new System.Drawing.Size(142, 342);
+            this.lbKlienti.TabIndex = 0;
             // 
             // bVkladyVybery
             // 
@@ -120,7 +120,7 @@
         private System.Windows.Forms.Button bUpravKlienta;
         private System.Windows.Forms.Button bOdstranKlienta;
         private System.Windows.Forms.Button bPridatKlienta;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbKlienti;
         private System.Windows.Forms.Button bVkladyVybery;
     }
 }

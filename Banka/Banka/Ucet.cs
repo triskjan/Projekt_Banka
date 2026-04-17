@@ -8,27 +8,24 @@ namespace Banka
 {
     public class Ucet
     {
-        /*
-         * a.	Vlastnosti
-            i.	CisloUctu
-            ii.	Zustatek
-            b.	Metody
-            i.	VlozPenize()
-            ii.	VyberPenize()
-        */
-        public static string JmenoSouboru = "ucty.csv";
+        public static string SouborUcty = "ucty.csv";
+        public static string SouborSeznamUctu = "Seznam_uctu.txt"; //soubor pro uložení seznamu všech čísel účtů pro kontrolu unikátnosti při vytváření nového účtu
+        public static string SouborMaxUcet = "MaxCisloUctu.txt"; //soubor pro uložení aktuálního maximálního čísla účtu, aby bylo možné pokračovat v číslování účtů i po restartu aplikace
+        public static int MaxCisloUctu = 0;
         public static string CSVzahlavi = "klient;CisloUctu;Zustatek";
-        public static List<int> SeznamUctu = new List<int>(); //seznam všech čísel účtů pro kontrolu unikátnosti při vytváření nového účtu
+
         public int CisloUctu { get; set; }
         public decimal Zustatek { get; set; }
 
         public Ucet(int cisloUctu)
         {
-            CisloUctu = cisloUctu;
+            CisloUctu = ++MaxCisloUctu;
+            Zustatek = 0;
         }
 
         public Ucet(int cisloUctu, decimal zustatek) : this(cisloUctu)
         {
+            CisloUctu = cisloUctu; //při načítání účtu z CSV souboru se číslo účtu nastaví na hodnotu z CSV, ale zároveň se aktualizuje MaxCisloUctu, aby bylo zajištěno, že nové účty budou mít unikátní čísla
             Zustatek = zustatek;
         }
 
@@ -56,6 +53,10 @@ namespace Banka
             {
                 throw new InvalidOperationException("Nedostatečný zůstatek na účtu.");
             }
+        }
+        public string ToCSV()
+        {
+            return $"{CisloUctu};{Zustatek}";
         }
     }
 }
