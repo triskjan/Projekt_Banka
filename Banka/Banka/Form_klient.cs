@@ -13,8 +13,8 @@ namespace Banka
 {
     public partial class Form_klient : Form
     {
-        public bool FinancniOperace { get; set; } //indikace, zda je formulář otevřen pro finanční operace (vklad/výběr) nebo pro přidání/úpravu klienta
-        public Form_klient()
+        bool FinancniOperace { get; set; } //indikace, zda je formulář otevřen pro finanční operace (vklad/výběr) nebo pro přidání/úpravu klienta
+        public Form_klient() //novy klient
         {
             InitializeComponent();
             this.Text = "Přidat klienta";
@@ -22,12 +22,12 @@ namespace Banka
             bOK.Click += bPridat_Click;
             groupBox1.Enabled = groupBox2.Enabled = false; //deaktivace pole pro úpravu údajů klienta při přidávání nového klienta, protože údaje se zadávají do textových polí a neexistuje žádný klient k úpravě
         }
-        public Form_klient(Klient klient)
+        public Form_klient(Klient klient) //uprava klienta s nactenim puvodnich hodnot
         {
             InitializeComponent();
             this.Text = "Upravit klienta";
             bOK.Text = "Upravit";
-            bOK.Click += bUpravit_Click;
+            bOK.Click += bUpravit_Click; //zmena originalni obsluzne metody za jinou 
             tbJmeno.Text = klient.Jmeno;
             tbPrijmeni.Text = klient.Prijmeni;
             tbUzivatelskeJmeno.Text = klient.UzivatelskeJmeno;
@@ -35,7 +35,8 @@ namespace Banka
             this.klient = klient;
             groupBox1.Enabled = groupBox2.Enabled = false;
         }
-public Form_klient(Klient klient, bool financniOperace) : this(klient) //konstruktor pro otevření formuláře pro finanční operace, který využívá konstruktor pro úpravu klienta a navíc nastaví indikátor finanční operace
+        //konstruktor pro formular urceny k financnim operacim 
+public Form_klient(Klient klient, bool financniOperace = false) : this(klient) //konstruktor pro otevření formuláře pro finanční operace, který využívá konstruktor pro úpravu klienta a navíc nastaví indikátor finanční operace
         {
             if (financniOperace)
             {
