@@ -34,8 +34,6 @@ namespace Banka
             tbHeslo.Text = klient.Heslo;
             this.klient = klient;
             groupBox1.Enabled = groupBox2.Enabled = false;
-
-
         }
 public Form_klient(Klient klient, bool financniOperace) : this(klient) //konstruktor pro otevření formuláře pro finanční operace, který využívá konstruktor pro úpravu klienta a navíc nastaví indikátor finanční operace
         {
@@ -103,7 +101,45 @@ public Form_klient(Klient klient, bool financniOperace) : this(klient) //konstru
 
         private void lbUcty_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if(lbUcty.SelectedItem != null)
+            {
+                Ucet selectedUcet = (Ucet)lbUcty.SelectedItem;
+                nudZustatek.Value = selectedUcet.Zustatek; //zobrazení zůstatku na účtu v numerickém poli pro možnost provedení finanční operace (vklad/výběr)
+                
+            }
+        }
+
+        private void Form_klient_Load(object sender, EventArgs e)
+        {
+            nudZustatek.Enabled = false; 
+        }
+
+        private void bVlozit_Click(object sender, EventArgs e)
+        {
+            if(lbUcty.SelectedItem != null)
+            {
+                Ucet vybranyUcet = (Ucet)lbUcty.SelectedItem;
+                vybranyUcet.VlozPenize(nudCastka.Value); //provedení vkladu peněz na vybraný účet pomocí metody VlozPenize třídy Ucet
+                nudZustatek.Value = vybranyUcet.Zustatek;   
+            }
+            else
+            {
+                MessageBox.Show("Vyberte účet pro vklad peněz.");
+            }
+        }
+
+        private void bVybrat_Click(object sender, EventArgs e)
+        {
+            if (lbUcty.SelectedItem != null)
+            {
+                Ucet vybranyUcet = (Ucet)lbUcty.SelectedItem;
+                vybranyUcet.VyberPenize(nudCastka.Value); //provedení vkladu peněz na vybraný účet pomocí metody VlozPenize třídy Ucet
+                nudZustatek.Value = vybranyUcet.Zustatek;
+            }
+            else
+            {
+                MessageBox.Show("Vyberte účet pro výběr peněz.");
+            }
         }
     }
 }

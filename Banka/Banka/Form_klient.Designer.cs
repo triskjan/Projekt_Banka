@@ -41,17 +41,17 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bVybrat = new System.Windows.Forms.Button();
             this.bVlozit = new System.Windows.Forms.Button();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.nudCastka = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudZustatek = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.bOdstranitUcet = new System.Windows.Forms.Button();
             this.bPridatUcet = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCastka)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudZustatek)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -147,9 +147,9 @@
             // 
             this.groupBox1.Controls.Add(this.bVybrat);
             this.groupBox1.Controls.Add(this.bVlozit);
-            this.groupBox1.Controls.Add(this.numericUpDown2);
+            this.groupBox1.Controls.Add(this.nudCastka);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.numericUpDown1);
+            this.groupBox1.Controls.Add(this.nudZustatek);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Location = new System.Drawing.Point(301, 12);
             this.groupBox1.Name = "groupBox1";
@@ -166,6 +166,7 @@
             this.bVybrat.TabIndex = 3;
             this.bVybrat.Text = "Vybrat z účtu";
             this.bVybrat.UseVisualStyleBackColor = true;
+            this.bVybrat.Click += new System.EventHandler(this.bVybrat_Click);
             // 
             // bVlozit
             // 
@@ -175,14 +176,20 @@
             this.bVlozit.TabIndex = 3;
             this.bVlozit.Text = "Vložit na účet";
             this.bVlozit.UseVisualStyleBackColor = true;
+            this.bVlozit.Click += new System.EventHandler(this.bVlozit_Click);
             // 
-            // numericUpDown2
+            // nudCastka
             // 
-            this.numericUpDown2.DecimalPlaces = 2;
-            this.numericUpDown2.Location = new System.Drawing.Point(9, 91);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown2.TabIndex = 2;
+            this.nudCastka.DecimalPlaces = 2;
+            this.nudCastka.Location = new System.Drawing.Point(9, 91);
+            this.nudCastka.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nudCastka.Name = "nudCastka";
+            this.nudCastka.Size = new System.Drawing.Size(120, 20);
+            this.nudCastka.TabIndex = 2;
             // 
             // label7
             // 
@@ -193,13 +200,18 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Částka";
             // 
-            // numericUpDown1
+            // nudZustatek
             // 
-            this.numericUpDown1.DecimalPlaces = 2;
-            this.numericUpDown1.Location = new System.Drawing.Point(9, 42);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 2;
+            this.nudZustatek.DecimalPlaces = 2;
+            this.nudZustatek.Location = new System.Drawing.Point(9, 42);
+            this.nudZustatek.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nudZustatek.Name = "nudZustatek";
+            this.nudZustatek.Size = new System.Drawing.Size(120, 20);
+            this.nudZustatek.TabIndex = 2;
             // 
             // label6
             // 
@@ -270,10 +282,11 @@
             this.Controls.Add(this.bOK);
             this.Name = "Form_klient";
             this.Text = "Klient";
+            this.Load += new System.EventHandler(this.Form_klient_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCastka)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudZustatek)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -296,9 +309,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button bVybrat;
         private System.Windows.Forms.Button bVlozit;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown nudCastka;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nudZustatek;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button bOdstranitUcet;
