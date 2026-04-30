@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.bVkladyVybery = new System.Windows.Forms.Button();
             this.bUpravKlienta = new System.Windows.Forms.Button();
             this.bOdstranKlienta = new System.Windows.Forms.Button();
             this.bPridatKlienta = new System.Windows.Forms.Button();
             this.lbKlienti = new System.Windows.Forms.ListBox();
-            this.bVkladyVybery = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +50,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Klienti";
+            // 
+            // bVkladyVybery
+            // 
+            this.bVkladyVybery.Location = new System.Drawing.Point(6, 159);
+            this.bVkladyVybery.Name = "bVkladyVybery";
+            this.bVkladyVybery.Size = new System.Drawing.Size(120, 23);
+            this.bVkladyVybery.TabIndex = 2;
+            this.bVkladyVybery.Text = "Vklady/výběry";
+            this.bVkladyVybery.UseVisualStyleBackColor = true;
+            this.bVkladyVybery.Click += new System.EventHandler(this.bVkladyVybery_Click);
             // 
             // bUpravKlienta
             // 
@@ -81,23 +91,14 @@
             this.bPridatKlienta.UseVisualStyleBackColor = true;
             this.bPridatKlienta.Click += new System.EventHandler(this.bPridejKlienta_Click);
             // 
-            // listBox1
+            // lbKlienti
             // 
             this.lbKlienti.FormattingEnabled = true;
             this.lbKlienti.Location = new System.Drawing.Point(132, 19);
-            this.lbKlienti.Name = "listBox1";
+            this.lbKlienti.Name = "lbKlienti";
             this.lbKlienti.Size = new System.Drawing.Size(142, 342);
             this.lbKlienti.TabIndex = 0;
-            // 
-            // bVkladyVybery
-            // 
-            this.bVkladyVybery.Location = new System.Drawing.Point(6, 159);
-            this.bVkladyVybery.Name = "bVkladyVybery";
-            this.bVkladyVybery.Size = new System.Drawing.Size(120, 23);
-            this.bVkladyVybery.TabIndex = 2;
-            this.bVkladyVybery.Text = "Vklady/výběry";
-            this.bVkladyVybery.UseVisualStyleBackColor = true;
-            this.bVkladyVybery.Click += new System.EventHandler(this.bVkladyVybery_Click);
+            this.lbKlienti.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbKlienti_MouseDoubleClick);
             // 
             // Form1
             // 

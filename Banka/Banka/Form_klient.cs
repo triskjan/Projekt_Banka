@@ -98,6 +98,10 @@ public Form_klient(Klient klient, bool financniOperace = false) : this(klient) /
             {
                 lbUcty.Items.Add(ucet);
             }
+            if(lbUcty.Items.Count > 0)
+            {
+                lbUcty.SelectedIndex = 0; //automatické vybrání prvního účtu v seznamu po aktualizaci, aby bylo zobrazeno jeho číslo a zůstatek pro možnost provedení finanční operace (vklad/výběr) bez nutnosti ručního výběru účtu
+            }
         }
 
         private void lbUcty_SelectedIndexChanged(object sender, EventArgs e)

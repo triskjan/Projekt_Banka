@@ -42,6 +42,15 @@ namespace Banka
         {
             return $"{Jmeno};{Prijmeni};{UzivatelskeJmeno};{Heslo}";
         }
+        public string UctyToCSV()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (Ucet ucet in Ucty)
+            {
+                sb.AppendLine($"{UzivatelskeJmeno};{ucet.ToCSV()}");
+            }
+            return sb.ToString();
+        }
         public override string ToString()
         {
             return $"{Prijmeni} {Jmeno} - {UzivatelskeJmeno}";

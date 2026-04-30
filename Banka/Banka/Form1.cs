@@ -72,24 +72,10 @@ namespace Banka
                 sw2.WriteLine(Ucet.CSVzahlavi);
                 foreach (Klient klient in lbKlienti.Items)
                 {
-                    foreach (Ucet ucet in klient.Ucty)
-                    {
-                        sw2.WriteLine($"{klient.UzivatelskeJmeno};{ucet.ToCSV()}");
-                    }
+                    sw2.Write(klient.UctyToCSV());
                 }
             }
-            //uložení všech účtu klientů do souboru při zavírání aplikace, aby nedošlo ke ztrátě dat o účtech klientů při ukončení aplikace
-            using (StreamWriter sw3 = new StreamWriter(Ucet.SouborSeznamUctu, false, Encoding.UTF8))
-            {
-                sw3.WriteLine(Ucet.CSVzahlavi);
-                foreach ( Klient klient in lbKlienti.Items)
-                {
-                    foreach (Ucet ucet in klient.Ucty)
-                    {
-                        sw3.WriteLine($"{klient.UzivatelskeJmeno};{ucet.ToCSV()}");
-                    }
-                }
-            }
+            
             //Uložení aktuálního maximálního čísla účtu do souboru při zavírání aplikace, aby bylo možné pokračovat v číslování účtů i po restartu aplikace
             File.WriteAllText(Ucet.SouborMaxUcet, Ucet.MaxCisloUctu.ToString()); //uložení aktuálního maximálního čísla účtu do souboru při zavírání aplikace, aby bylo možné pokračovat v číslování účtů i po restartu aplikace
         }
@@ -132,8 +118,6 @@ namespace Banka
                 Ucet.MaxCisloUctu = Convert.ToInt32(File.ReadAllText(Ucet.SouborMaxUcet));
             }
             else Ucet.MaxCisloUctu = 10000;
-            
-
         }
 
         private void bVkladyVybery_Click(object sender, EventArgs e)
@@ -147,6 +131,11 @@ namespace Banka
                 
                 }
             }
+        }
+
+        private void lbKlienti_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            bVkladyVybery_Click(null, null);
         }
     }
 }

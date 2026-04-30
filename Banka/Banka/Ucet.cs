@@ -9,7 +9,7 @@ namespace Banka
     public class Ucet
     {
         public static string SouborUcty = "ucty.csv";
-        public static string SouborSeznamUctu = "Seznam_uctu.txt"; //soubor pro uložení seznamu všech čísel účtů pro kontrolu unikátnosti při vytváření nového účtu
+        //public static string SouborSeznamUctu = "Seznam_uctu.txt"; //soubor pro uložení seznamu všech čísel účtů pro kontrolu unikátnosti při vytváření nového účtu
         public static string SouborMaxUcet = "MaxCisloUctu.txt"; //soubor pro uložení aktuálního maximálního čísla účtu, aby bylo možné pokračovat v číslování účtů i po restartu aplikace
         public static int MaxCisloUctu = 0;
         public static string CSVzahlavi = "klient;CisloUctu;Zustatek";
